@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+
+	<div class="title_desc">{{ friends_type }}（只取最近30个）</div>
+	
+	<div class="friends_container">
+		{% if friends_list %}
+			<ul>
+			{% for friend in friends_list %}
+				<li>
+					<div class="tweet_user_head">
+						<img src="{% if friend.head %}
+									{{ friend.head }}/50
+								  {% else %}
+								  	/static/styles/images/head_null.jpg
+								  {% endif %}"
+								  {% if not friend.head %}width="50" height="50"{% endif %} />
+					</div>
+					<div class="friends_info">
+						<ul>
+							<li><a href="http://t.qq.com/{{ friend.name }}" target="_blank">{{ friend.nick|truncatewords:4 }}</a></li>
+							<li><span>听众：</span>{{ friend.fansnum }}</li>
+							<li><span>收听：</span>{{ friend.idolnum }}</li>
+						</ul>
+					</div>
+				</li>
+			{% endfor %}
+			</ul>
+		{% endif %}
+	</div>
+
+{% endblock %}

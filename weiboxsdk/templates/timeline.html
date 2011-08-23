@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+{% load timestampconvert %}
+
+{% block headcontent %}
+	<script type="text/javascript">
+		var global_operate_type="",global_tweet_id="";
+		var operate_func = function(operate_type,tweet_id){
+			var div_id=tweet_id+"_operate_container";
+			$('#'+div_id).html("");
+			
+			var close_html="<div id=\"close_operate\">X</div>";
+			var content_textarea="<div id=\"operate_textarea_container\" class=\"textarea_container\">"+
+								 "<div class=\"chars_left_desc\">"+
+								 "你还可以输入 <span id=\"content_charsLeft\"></span> 个字符</div>"+
+								 "<textarea id=\"content_textarea\" name=\"content\"></textarea>"+
+								 "<div class=\"tweet-submit\">";
+			if(operate_type=="retweet")
+				content_textarea+="<input id=\"submit_btn\" type=\"button\" class=\"enabled\" value=\"转播\">";
+			else
+				content_textarea+="<input id=\"submit_btn\" type=\"button\" class=\"enabled\" value=\"评论\">";
+			content_textarea+="</div></div>";
+			
+			$('#'+div_id).html(close_html+content_textarea);
+
+			$('#content_textarea').limit('140','#content_charsLeft');
+			$('#close_operate').click(function(){
+				$('#'+div_id).css('display','none');
+				$('#'+div_id).html("");
+			});
+			$('#submit_btn').click(function(){
+				call_request(operate_type,tweet_id);
+			});
+			
+			if(global_operate_type=="" || operate_type==global_operate_type){
+				if($('#'+div_id).css('display')=='none'){
+					$('#'+div_id).css('display','block');
+				}			
+				else{
+					$('#'+div_id).css('display','none');
+					$('#'+div_id).html("");
+				}
+							
+			}else{
+				$('#'+div_id).css('display','block');
+			}				
+			global_operate_type=operate_type;
+			
+			if(global_tweet_id!="" && global_tweet_id!=tweet_id){
+				var previous_id=global_tweet_id+"_operate_container";
+				$('#'+previous_id).css('display','none');
+				$('#'+previous_id).html("");
+			}
+			global_tweet_id=tweet_id;
+		}
+		
+		var call_request=function(operate_type,tweet_id){
+			content=$('#content_textarea').val();
+			var url="";
+			if(operate_type=="retweet")
+				url="{% url weiboxauth_re_add_tweet %}";
+			else
+				url="{% url weiboxauth_comment_tweet %}";
+			$.post(
+				url,
+				{"content":content,"rid":tweet_id},
+				function(data){
+					var previous_id=global_tweet_id+"_operate_container";
+					$('#'+previous_id).css('display','none');
+					$('#'+previous_id).html("");
+				},
+				"json"
+			);
+		}
+	</script>
+{% endblock %}
+
+{% block content %}
+	<div class="title_desc">{{ timeline_cate }}（只取了最新的30条）</div>
+	
+	<div class="timeline_container">
+		{% for tl in timeline.info %}
+			<div class="tweet_container">
+				<div class="tweet_content">
+					<div class="tweet_user_head">
+						<img src="{{ tl.head }}/50" />
+					</div>
+					<div class="tweet_text">
+						<div>{{ tl.nick }}：{{ tl.text }}</div>
+						{% if tl.image %}
+							<img src="{{ tl.image.0 }}/160" />
+						{% endif %}
+					</div>
+				</div>
+				{% if tl.type == 2 %}
+					<div class="retweet_container">
+						<div class="retweet_content">
+							<div class="retweet_text">{{ tl.source.nick }}：{{ tl.source.text }}</div>
+						</div>
+						{% if tl.source.image %}
+							<img src="{{ tl.source.image.0 }}/160" />
+						{% endif%}
+						<div class="retweet_foot">
+							<div class="retweet_other_info">
+								{{ tl.source.timestamp|timestamp_convert|date:'m/d H:i' }} 来自 {{ tl.source.from }}
+							</div>
+						</div>
+					</div>
+				{% endif %}
+				<div class="tweet_foot">
+					<div class="tweet_other_info">
+						{{ tl.timestamp|timestamp_convert|date:'m/d H:i' }} 来自 {{ tl.from }}
+					</div>
+					<div class="tweet_operate">
+						<span><a href="javascript:;" onclick="operate_func('retweet',{{ tl.id }});">转播</a></span>
+						<span><a href="javascript:;" onclick="operate_func('comment',{{ tl.id }});">评论</a></span>
+						<span><a href="javascript:;">更多</a></span>	
+					</div>
+				</div>
+				<div id="{{ tl.id }}_operate_container" class="operate_container"></div>
+			</div>
+		{% endfor %}
+	</div>
+{% endblock %}

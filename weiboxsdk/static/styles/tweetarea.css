@@ -1,0 +1,59 @@
+.textarea_container{
+    width:530px;
+    height:150px;
+    float:left;
+
+}
+.textarea_container textarea{
+    border:1px solid #ccc;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    -khtml-border-radius:5px;
+    background-color:#fff;
+    font-family:Arial;
+    color:#6E6E6E;
+    width:100%;
+    height:100px;
+    font-size:14px;
+    padding:10px;
+	resize:none;
+	overflow:auto;
+}
+.textarea_container textarea:focus{
+	outline:none;
+}
+.chars_left_desc{
+    margin:5px 5px 5px 10px;
+    color: #6E6E6E;
+    font-weight:bold;
+    font-size:12px;
+    float: right;
+}
+.tweet-submit{    
+    margin:5px -20px 5px 10px;
+    height:25px;
+    float: right;
+}
+.tweet-submit input[type="submit"],#submit_btn{
+    -moz-transition: border 0.218s ease 0s;
+    background: none repeat scroll 0 0 #F3F3F3;
+    border: 1px solid #DCDCDC;
+    border-radius: 2px 2px 2px 2px;
+    color: #6E6E6E;
+    display: inline-block;
+    font: bold 12px Helvetica,Arial,sans-serif;
+    width: 100px;
+    padding: 7px 12px;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #FFFFFF;
+}
+.tweet-submit input[type="submit"].disabled,#submit_btn.disabled{
+	cursor:default;
+	color:#999;
+	text-shadow: 0 -1px 1px #fff;
+}
+.tweet-submit input[type="submit"].enabled:hover,#submit_btn.enabled:hover{
+    border-color: #999999;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+    color: #333333;
+}

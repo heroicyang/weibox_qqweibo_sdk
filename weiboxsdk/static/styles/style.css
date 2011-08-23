@@ -1,0 +1,242 @@
+body {
+    background: url("images/body_bg.gif") repeat-x scroll 0 0 #DDDDDD;
+    font: 12px normal Arial,Helvetica,sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    margin: 0 auto;
+    position: relative;
+    width: 960px;
+}
+#header {
+    background: url("images/header_bg.png") no-repeat scroll center top transparent;
+    padding-top: 120px;
+}
+#header .disclaimer {
+    color: #999999;
+    display: block;
+    padding: 100px 0 7px;
+    position: absolute;
+    right: 0;
+    text-align: right;
+    top: 0;
+}
+#header .disclaimer a {
+    color: #CCCCCC;
+}
+ul.topnav {
+    background: url("images/topnav_bg.gif") repeat-x scroll 0 0 transparent;
+    float: left;
+    font-size: 1.2em;
+    list-style: none outside none;
+    margin: 0;
+    padding: 0 20px;
+    width: 920px;
+}
+ul.topnav li {
+    float: left;
+    margin: 0;
+    padding: 0 15px 0 0;
+    position: relative;
+}
+ul.topnav li a {
+    color: #FFFFFF;
+    display: block;
+    float: left;
+    padding: 10px 5px;
+    text-decoration: none;
+}
+ul.topnav li a:hover {
+    background: url("images/topnav_hover.gif") no-repeat scroll center top transparent;
+}
+ul.topnav li span {
+    background: url("images/subnav_btn.gif") no-repeat scroll center top transparent;
+    float: left;
+    height: 35px;
+    width: 17px;
+}
+ul.topnav li span.subhover {
+    background-position: center bottom;
+    cursor: pointer;
+}
+ul.topnav li ul.subnav {
+    background: none repeat scroll 0 0 #333333;
+    border: 1px solid #111111;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    display: none;
+    float: left;
+    left: 0;
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 35px;
+    width: 170px;
+}
+ul.topnav li ul.subnav li {
+    border-bottom: 1px solid #444444;
+    border-top: 1px solid #252525;
+    clear: both;
+    margin: 0;
+    padding: 0;
+    width: 170px;
+}
+html ul.topnav li ul.subnav li a {
+    background: url("images/dropdown_linkbg.gif") no-repeat scroll 10px center #333333;
+    float: left;
+    padding-left: 20px;
+    width: 145px;
+}
+html ul.topnav li ul.subnav li a:hover {
+    background: url("images/dropdown_linkbg.gif") no-repeat scroll 10px center #222222;
+}
+#header img {
+    margin: 20px 0 10px;
+}
+#main{
+	margin:60px 15px;
+}
+#demo_description,.title_desc,#user,.tweet_container,.retweet_container,.friends_container,.operate_container{
+	width:700px;
+	background: none repeat scroll 0 0 #F3F3F3;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+    -moz-transition: border 0.218s ease 0s;
+    border: 1px solid #DCDCDC;
+    border-radius: 2px 2px 2px 2px;
+    color: #6E6E6E;
+    display: inline-block;
+    font: bold 12px Helvetica,Arial,sans-serif;
+    margin-right: 10px;
+    padding: 7px 12px;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #FFFFFF;
+}
+#user,#demo_description,#send_tweet_container{
+	margin-top:10px;
+}
+#demo_description p{
+	text-indent:2em
+}
+.retweet_container{
+	margin: 5px;
+    width: 550px;
+}
+.operate_container{
+	display:none;
+	margin: 30px 5px 5px 70px;
+    width: 600px;
+    height: 150px;
+}
+a.button{
+	-moz-transition: border 0.218s ease 0s;
+    background: none repeat scroll 0 0 #F3F3F3;
+    border: 1px solid #DCDCDC;
+    border-radius: 2px 2px 2px 2px;
+    color: #6E6E6E;
+    display: inline-block;
+    font: bold 12px Helvetica,Arial,sans-serif;
+    margin-right: 10px;
+    padding: 7px 12px;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #FFFFFF;
+}
+a.button:hover {
+    border-color: #999999;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+    color: #333333;
+}
+a.button:active {
+    border-color: #444444;
+    color: #000000;
+}
+#login_btn{
+	padding-top:30px;
+}
+#user_head,.tweet_user_head {
+    background: none repeat scroll 0 0 #E9E9E9;
+    border: 1px solid #BBBBBB;
+    box-shadow: 0 0 3px #BBBBBB;
+    height: 100px;
+    padding: 5px;
+    width: 100px;
+    float: left;
+}
+.tweet_user_head{
+	width:50px;
+	height:50px;
+	margin-right: 10px;
+}
+#user_info{
+	padding-left: 120px;
+}
+#user_info ul{
+	list-style:none;
+}
+#user_info ul li{
+	float:left;
+	width: 30%;
+	line-height:20px;
+}
+#user_info ul li.li_full_width{
+	width:100%;
+}
+.timeline_container{
+	margin-top:10px;
+}
+#send_tweet_container{
+	padding-bottom:210px;
+}
+#upload_image{
+	float:left;
+	margin:10px;
+}
+.friends_container{
+	margin-top:10px;
+}
+.friends_container ul,.friends_info ul{
+	list-style:none;
+}
+.friends_container ul li{
+	float:left;
+	width:25%;
+	margin-top:10px;
+}
+.friends_info ul li{
+	float:none;
+	width:auto;
+	line-height:20px;
+	margin-top:1px;
+}
+.tweet_text{
+	padding-left: 70px;
+    padding-top: 5px;
+}
+.tweet_foot{
+	margin-left:70px;
+	margin-top:5px;
+}
+.retweet_foot{
+	margin-top:5px;
+}
+.tweet_other_info,.retweet_other_info{
+	float:left;
+}
+.tweet_operate{
+	float:right;
+}
+.tweet_operate span{
+	margin:5px;
+}
+#close_operate{
+	float: right;
+    margin: -5px -5px 5px 5px;
+    cursor: pointer;
+}
+#operate_textarea_container{
+	height:80px;
+}
+#operate_textarea_container textarea{
+	height:60px;
+}

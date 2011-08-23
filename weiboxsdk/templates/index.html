@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+	
+	{% if userinfo %}
+		<div class="title_desc">
+			登陆成功！<a href="{% url weiboxauth_qqweibo_login_out %}">退出</a>
+		</div>
+		<div id="user">
+			<div id="user_head">
+				<img src="{{ userinfo.head }}/100" />
+			</div>
+			<div id="user_info">
+				<div>{{ userinfo.nick }}（@{{ userinfo.name }}）</div>
+				<ul>
+					<li><span>听众：</span>{{ userinfo.fansnum }}</li>
+					<li><span>收听：</span>{{ userinfo.idolnum }}</li>
+					<li><span>微博：</span>{{ userinfo.tweetnum }}</li>
+					<li><span>性别：</span>{% if userinfo.sex == 1 %}男{% else %}女{% endif %}</li>
+					<li><span>Email：</span>{{ userinfo.email }}</li>
+					<li class="li_full_width"><span>简介：</span>{{ userinfo.introduction }}</li>
+					<li class="li_full_width">
+						<span>标签：</span>
+						{% for t in userinfo.tag %}
+							{{ t.name }}
+						{% endfor %}
+					</li>
+				</ul>
+			</div>
+		</div>
+	{% endif %}
+	
+	<div id="demo_description">
+		<div>说明：</div>
+		<p>此Demo使用Python平台较流行的Web框架Django构建！
+		其中对腾讯微博API的封装方式和我在“微分析”应用中封装的C# SDK类似！
+		本Demo不仅对开发腾讯微博第三方应用的新手有一定的指导，
+		也对初步学习Django开发的朋友有一定的帮助！</p>
+		<p>本Demo基于Django 1.3版本、Python 2.7版本开发！
+		由于Python 3.x在语法上有大量的改变，且Django目前不支持Python 3.x，
+		所以本Demo并未兼容Python 3.x，请务必使用Python 2.5 ~ Python 2.x！</p>
+	</div>
+	
+	{% if not userinfo %}
+		<div id="login_btn">
+			<a class="button" href="{% url weiboxauth_qqweibo_login %}">使用腾讯微博帐号登陆</a>
+		</div>
+	{% endif %}
+{% endblock %}

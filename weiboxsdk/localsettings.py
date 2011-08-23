@@ -1,0 +1,2 @@
+QQWEIBO_CONSUMER_KEY='在腾讯微博开放平台申请的Key'
+QQWEIBO_CONSUMER_SECRET='在腾讯微博开放平台申请的Key对应的Secret'
